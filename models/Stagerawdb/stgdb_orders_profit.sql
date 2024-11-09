@@ -1,13 +1,13 @@
  SELECT 
     O.*,
---raw_customer
+--rawdb_customer
     c.*,
---raw_product
+--rawdb_product
     P.*,
     (O.ORDERSELLINGPRICE - O.ORDERCOSTPRICE) as order_profit
 FROM {{ ref('rawdb_orders') }} AS O
 LEFT JOIN 
-    {{ ref('rawdb_orders') }} AS C
+    {{ ref('rawdb_customer') }} AS C
 on 
     c.CUSTOMER_ID = o.CUSTOMERID
 LEFT JOIN 
